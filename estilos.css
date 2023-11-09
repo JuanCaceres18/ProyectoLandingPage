@@ -447,10 +447,17 @@ ul > li{
 }
 .iconoWhatsAppFooter{
     color: green;
+    font-size: 40px;
 }
 .iconoFacebookFooter{
     color: blue;
+    font-size: 40px;
 }
 .iconoLinkedinFooter{
     color: #079CF6;
+    font-size: 40px;
+}
+.iconoInstagramFooter{
+    font-size: 40px;
+    color: black;
 }
