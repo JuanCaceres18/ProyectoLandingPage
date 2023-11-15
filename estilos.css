@@ -90,7 +90,7 @@ ul > li{
     box-shadow: 0 2px 0 2px #000;
 }
 .boton:active{
-    transform: scale(0.9);
+    transform: scale(0.9); /* Reduce el tamaño al hacer click. */
 }
 /* Nosotros */
 .nosotros{
@@ -157,7 +157,7 @@ ul > li{
     position: absolute;
     top: 0;
     left: 0;
-    background-color: red;
+    background-color: #079CF6;
     width: 350px;
     height: 400px;
     opacity: .7;
@@ -270,6 +270,7 @@ ul > li{
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    position: relative;
 }
 .testimonioCliente{
     padding-top: 35px;
@@ -301,6 +302,51 @@ ul > li{
 .nombreCliente{
     padding-bottom: 25px;
     font-size: 24px;
+}
+.contenedorTestimonios{
+    display: flex;
+}
+.botonesTestimonios button{
+    font-size: 1.8em;
+    height: 2em;
+    width: 2em;
+    background-color: white;
+    position: absolute;
+    top: 0;         /* Indicamos que el elemento ocupe toda la altura de su contenedor */
+    bottom: 0;
+    margin: auto; /* Lo centramos verticalmente */
+    border: none;
+    color: #079CF6;
+    box-shadow: 0 0 16px rgba(1,17,39,0.25);
+    cursor: pointer;
+    border-radius: 50%;
+}
+#siguienteTestimonios{
+    right: 20px;
+}
+#anteriorTestimonios{
+    left: 20px;
+}
+.iconoSlideTestimonio{
+    font-size: 28px;
+}
+.botonesTestimonios button:hover{
+    box-shadow: 0 0 30px rgba(1,17,39,0.25);
+}
+.oculto{
+    display: none;
+}
+.fade {
+    animation-name: fade; /* Coincide con el nombre definido en @keyframes */
+    animation-duration: 1.5s;/* Duración de la animación en segundos */
+}
+  
+@keyframes fade {
+    from {opacity: .4} /* Indica el estado inicial de la animación. Establece 
+                        la opacidad del elemento en 0.4 (40%).*/
+    to {opacity: 1} /* Estado final. La opacidad del elemento es del 100% */
+    /* La animación hace que la opacidad del elemento cambie suavemente
+     de 0.4 a 1 durante 1.5 segundos. */
 }
 /* Estadísticas */
 .estadisticas{
@@ -460,4 +506,197 @@ ul > li{
 .iconoInstagramFooter{
     font-size: 40px;
     color: black;
+}
+/* Form Wizard */
+.contenedorWizard{
+    width: 350px;
+    height: 430px;
+    background-color: white;
+    border-radius: 20px;
+    position: relative;
+    margin:80px auto;
+    transition: 1s; /* La transición de 1s aplicada al contenedor
+                    permite que cualquier cambio en el CSS de este contenedor tarde 1 segundo
+                    en completarse. Esto genera una animación suave. */
+    overflow: hidden;
+    z-index: 1001;
+    display: none;
+}
+h3{
+    text-align: center;
+    margin: 10px 0;
+}
+.contenedorWizard form{
+    width: 280px;
+    position: absolute;
+    top: 60px;
+    left: 35px;
+    transition: 1s; /* Animación al cambiar de etapa */
+                    /* La transición de 1s aplicada al form
+                    permite que cualquier cambio en el CSS de este formulario tarde 1 segundo
+                    en completarse. */
+}
+form input{
+    width: 100%;
+    padding: 12px 5px;
+    margin: 5px 0px;
+    border: none;
+    border-bottom: 1px solid #999;
+    outline: none;
+    background: none;
+}
+form textarea{
+    margin-top: 10px;
+    height: 90px;
+    width: 100%;
+    resize: none; /* No se puede redimensionar */
+    outline: none;
+}
+.botonSiguiente{
+    width: 100%;
+    text-align: center;
+}
+.estiloBoton{
+    width: 110px;
+    height: 40px;
+    border-radius: 50px;
+    margin-top: 20px;
+    background: linear-gradient(#63a3cb,#0f578b);
+    color: white;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    justify-content: center;
+}
+.progreso{
+    width: 360px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    box-shadow: 0 -1px 5px -1px black;
+    position: relative;
+}
+.pasos{
+    width: 120px;
+    text-align: center;
+    position: relative;
+}
+#barraProgreso{
+    position: absolute;
+    width: 120px;
+    height: 100%;
+    background: linear-gradient(#0e8ddd,#0f578b);
+}
+.dosBotones{
+    display: flex;
+    justify-content: center;
+}
+.dosBotones button{
+    margin: 20px;
+}
+/* Animación de desplazamiento suave */
+@keyframes deslizar {
+    from {
+        opacity: 0; /* Inicia con una opacidad de 0 */
+        transform: translateX(10%); /* Desplaza el formulario hacia la derecha un 10% de su
+                                    ancho original. */
+    }
+    to {
+        opacity: 1; /* Termina con una opacidad de 1 */
+        transform: translateX(0%); /* Termina con el formulario en su posición original, sin
+                                    desplazamiento horizontal. */
+    }
+}
+
+.formDeslizar form {
+    animation: deslizar 0.5s ease-in-out; /* Aplica la animación deslizar al 
+                                            formulario dentro del contenedor con la clase 
+                                            formDeslizar. La animación dura 0.5 segundos 
+                                            y utiliza un ease-in-out (comienza 
+                                            lentamente, acelera en el medio y luego 
+                                            desacelera al final). */
+}
+#fondoOscuro{
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0; /* Aseguran que la capa se coloque en la esquina superior
+             izquierda de la ventana del navegador. */
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.7); /* Fondo negro semi-transparente */
+    z-index: 1000; 
+}
+.contenedorServiciosFormulario{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+.serviciosFormulario{
+    padding: 10px;
+}
+.botonesServicios{
+    text-align: center;
+    font-size: 12px;
+    width: 90px;
+    height: 40px;
+    border-radius: 50px;
+    margin-top: 20px;
+    background: linear-gradient(#c5d4de,#61bbfa);
+    color: white;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    justify-content: center;
+}
+.botonesServicios:hover{
+    background: linear-gradient(#185278,#17659d);
+}
+.botonesServicios-clicked{
+    background: linear-gradient(#185278,#17659d);
+}
+
+@keyframes fadeIn { /* Keyframes crea animaciones mediante la definición de fotogramas clave.
+                    */
+    from {     /* El elemento tiene opacidad 0 al inicio. El elemento se desplaza hacia arriba
+                    20 píxeles. */
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    to { /* El elemento tiene opacidad 1 al final. El elemento vuelve a su posicionamiento original
+                sin desplazamiento vertical. */
+        opacity: 1; 
+        transform: translateY(0);
+    }
+    /* La animación fadeIn hará que el mensaje de comprobación pase de ser invisible 
+    (opacity: 0) y de estar desplazado hacia arriba (transform: translateY(-20px))
+     a ser completamente visible y sin desplazamiento (opacity: 1, transform: translateY(0)). */
+}
+#mensajeComprobación{
+    background-color: white;
+    width: 500px;
+    height: 150px;
+    background-color: white;
+    border-radius: 20px;
+    position: relative;
+    margin:80px auto;
+    transition: 1s;
+    overflow: hidden;
+    z-index: 1001;
+    display: none;
+    text-align: center;
+    animation: fadeIn 0.5s ease-in-out; /* Aplica la animación llamada fadeIn al elemento,
+                                         con una duración de 0.5 segundos y con un ease-in-out.*/
+}
+/* Mensaje de servicio seleccionado en el wizard */
+#mostrarServicioSeleccionado{
+    text-align: center;
+}
+/* Mensaje de error textarea */
+.mensajeDeErrorTextarea, .mensajeDeErrorDatosPersonales{
+    display: none;
+}
+#botonOcultito{
+    visibility: hidden;
+    width: 300px;
 }
